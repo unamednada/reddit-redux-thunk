@@ -25,9 +25,10 @@ export const fetchPosts = (subReddit) => {
   return (dispatch) => {
     dispatch(request());
     return fetch(`https://www.reddit.com/r/${subReddit}.json`)
-      .then(
+      .then((response) => response.json()
+        .then( 
         (json) => dispatch(success(json)),
         (error) => dispatch(fail(error)),
-      )
+        ))
   }
 } 

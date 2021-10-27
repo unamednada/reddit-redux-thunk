@@ -2,16 +2,14 @@ import React from 'react';
 import { connect } from "react-redux";
 import {
   select as selectAction,
-  request as requestAction,
-  succes as successAction,
-  fail as failAction,
-  fetchPosts
+  fetchPosts as fetchAction,
 } from './actions';
 
-function App({ select, selected }) {
+function App({ select, selected, fetchPosts }) {
 
   const handleSelect = ({ target: { value } }) => {
     select(value);
+    fetchPosts(value);
   }
 
   return (
@@ -32,6 +30,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   select: (selected) => dispatch(selectAction(selected)),
+  fetchPosts: (selected) => dispatch(fetchAction(selected)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
