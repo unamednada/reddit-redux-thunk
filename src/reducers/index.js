@@ -37,7 +37,6 @@ const defaultReducer = (state = INITIAL_STATE, action) => {
   }
 }
 
-
 const rootReducer = combineReducers({ defaultReducer });
 
 export default rootReducer;
