@@ -1,19 +1,27 @@
-import { Provider } from "react-redux";
-import store from "./store";
+import React from 'react';
+import { connect } from "react-redux";
+import { select as selectAction } from './actions';
 
-function App() {
+function App({ select }) {
+
+  const handleSelect = ({ target: { value } }) => {
+    select(value);
+  }
+
   return (
-    <Provider store={ store }>
-      <div className="App">
-        <h1>Subreddit viewer</h1>
-        <h2>viewing: </h2>
-        <select>
-          <option>React JS</option>
-          <option>FrontEnd</option>
-        </select>
-      </div>
-    </Provider>
+    <div className="App">
+      <h1>Subreddit viewer</h1>
+      <h2>viewing: </h2>
+      <select onChange={ (e) => handleSelect(e) }>
+        <option value="reactjs">React JS</option>
+        <option value="frontend">FrontEnd</option>
+      </select>
+    </div>
   );
 }
 
-export default App;
+const mapDispatchToProps = (dispatch) => ({
+  select: (selected) => dispatch(selectAction(selected)),
+})
+
+export default connect(null, mapDispatchToProps)(App);
