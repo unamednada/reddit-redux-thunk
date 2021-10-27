@@ -4,7 +4,7 @@ import { REQUEST, SUCCESS, FAIL, SELECT } from '../actions';
 const INITIAL_STATE = {
   selected: '',
   loading: false,
-  json: {},
+  posts: [],
   error: null,
 };
 
@@ -23,7 +23,7 @@ const defaultReducer = (state = INITIAL_STATE, action) => {
     case SUCCESS:
       return {
         ...state,
-        json: action.json,
+        posts: action.json.data.children,
         loading: false,
       };
     case FAIL:
