@@ -25,7 +25,7 @@ function App({ select, selected, fetchPosts, loading, posts }) {
             <p>{ post.data.title }</p>
           ))
         )}
-      { loading && <h1>Loading...</h1> }
+      { loading && <h1>Loading...</h1>}
     </div>
   );
 }
